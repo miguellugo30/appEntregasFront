@@ -1,0 +1,132 @@
+<div class="modal-header">
+  <h5 class="modal-title mt-0">{{ title }}</h5>
+  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+    <span aria-hidden="true"></span>
+  </button>
+</div>
+<div class="modal-body" >
+  <form [formGroup]="formModal">
+    <div class="row">
+      <div class="mb-3">
+        <div class="form-group">
+          <label class="form-label requerido">Marca *</label>
+          <div>
+            <input
+              class="form-control ng-dirty !ng-invalid"
+              formControlName="marca"
+              placeholder="Ingresar Marca"
+              maxlength="255"
+              [style]="{ width: '100%' }"
+            />
+          </div>
+          <!--div class="text-danger">
+            <div *ngIf="formModal.controls['marca'].errors?.required">
+              Campo requerido
+            </div>
+          </div-->
+        </div><!--div.form-group-->
+      </div><!--div.col-->
+      <div class="mb-3">
+        <div class="form-group">
+          <label class="form-label requerido">Modelo *</label>
+          <div>
+            <input
+              class="form-control ng-dirty !ng-invalid"
+              formControlName="modelo"
+              placeholder="Ingresar Modelo"
+              maxlength="255"
+              [style]="{ width: '100%' }"
+            />
+          </div>
+          <!--div class="text-danger">
+            <div *ngIf="formModal.controls['marca'].errors?.required">
+              Campo requerido
+            </div>
+          </div-->
+        </div><!--div.form-group-->
+      </div><!--div.col-->
+      <div class="mb-3">
+        <div class="form-group">
+          <label class="form-label requerido">Año *</label>
+          <div>
+            <input
+              class="form-control ng-dirty !ng-invalid"
+              formControlName="anio"
+              placeholder="Ingresar Año"
+              maxlength="255"
+              [style]="{ width: '100%' }"
+            />
+          </div>
+          <!--div class="text-danger">
+            <div *ngIf="formModal.controls['marca'].errors?.required">
+              Campo requerido
+            </div>
+          </div-->
+        </div><!--div.form-group-->
+      </div><!--div.col-->
+      <div class="mb-3">
+        <div class="form-group">
+          <label class="form-label requerido">Placas *</label>
+          <div>
+            <input
+              class="form-control ng-dirty !ng-invalid"
+              formControlName="placas"
+              placeholder="Ingresar Placas"
+              maxlength="255"
+              [style]="{ width: '100%' }"
+            />
+          </div>
+          <!--div class="text-danger">
+            <div *ngIf="formModal.controls['marca'].errors?.required">
+              Campo requerido
+            </div>
+          </div-->
+        </div><!--div.form-group-->
+      </div><!--div.col-->
+      <div class="mb-3">
+        <div class="form-group">
+          <label class="form-label requerido">Tipo *</label>
+          <div>
+            <select
+            class="form-control ng-dirty !ng-invalid"
+            formControlName="tipo">
+            <option value="" selected>Selecciona un tipo</option>
+            <option *ngFor="let tipo of tipos; let i = index" [value]="tipos[i].name">
+              {{tipos[i].name}}
+            </option>
+          </select>
+          </div>
+          <!--div class="text-danger">
+            <div *ngIf="formModal.controls['marca'].errors?.required">
+              Campo requerido
+            </div>
+          </div-->
+        </div><!--div.form-group-->
+      </div><!--div.col-->
+      <div class="mb-3">
+        <div class="form-text">* Campos requerido</div>
+      </div>
+    </div><!--div.row-->
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="submit"
+    class="btn btn-primary"
+    *ngIf="accion == 'crear'"
+    (click)="create()"
+    [disabled]="formModal.invalid"
+    >
+    Guardar
+  </button>
+  <button
+  type="submit"
+    class="btn btn-primary"
+    *ngIf="accion == 'editar'"
+    (click)="edit()"
+    [disabled]="formModal.invalid"
+    >
+    Editar
+  </button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
+</div>
