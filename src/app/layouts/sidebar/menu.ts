@@ -33,7 +33,7 @@ export const MENU: MenuItem[] = [
             {
                 id: 3,
                 label: 'Colaboradores',
-                link: '/',
+                link: '/configuracion/colaboradores',
                 parentId: 2
             },
             {
