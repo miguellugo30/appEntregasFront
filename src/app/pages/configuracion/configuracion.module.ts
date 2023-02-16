@@ -11,6 +11,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { ModalComponent } from './vehiculos/modal/modal.component';
 import { ColaboradoresComponent } from './colaboradores/colaboradores.component';
 import { ModalColaboradorComponent } from './colaboradores/modal-colaborador/modal-colaborador.component';
+import { WebCamComponent } from './colaboradores/web-cam/web-cam.component';
+import { WebcamModule } from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { ModalColaboradorComponent } from './colaboradores/modal-colaborador/mod
     ModalComponent,
     ColaboradoresComponent,
     ModalColaboradorComponent,
+    WebCamComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +32,8 @@ import { ModalColaboradorComponent } from './colaboradores/modal-colaborador/mod
     NgbTooltipModule,
     NgbNavModule,
     NgApexchartsModule,
-    SimplebarAngularModule
+    SimplebarAngularModule,
+    WebcamModule
   ]
 })
 export class ConfiguracionModule { }

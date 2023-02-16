@@ -16,3 +16,9 @@ export class ResponseColaboradores {
   message: string;
   success: boolean;
 }
+
+export class ResponsePhoto {
+  data: string;
+  message: string;
+  success: boolean;
+}

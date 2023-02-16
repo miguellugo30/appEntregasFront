@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Colaboradores, ResponseColaboradores } from 'src/app/core/models/colaboradores';
+import { Colaboradores, ResponseColaboradores, ResponsePhoto } from 'src/app/core/models/colaboradores';
 import { ColaboradoresService } from 'src/app/core/services/colaboradores.service';
-
+import { WebCamComponent } from '../web-cam/web-cam.component';
 @Component({
   selector: 'app-modal-colaborador',
   templateUrl: './modal-colaborador.component.html',
@@ -11,6 +11,11 @@ import { ColaboradoresService } from 'src/app/core/services/colaboradores.servic
 })
 export class ModalColaboradorComponent implements OnInit {
 
+  @ViewChild(WebCamComponent) child;
+  /**
+   * Variable para el id del colaborador
+   */
+  public id :number;
   /**
    * Titulo que contendra el moda
    */
@@ -36,6 +41,10 @@ export class ModalColaboradorComponent implements OnInit {
     {id: '3', name: 'Repartidor'}
   ]
   /**
+   * Variable que contendra la imagen que se capture
+   */
+  public imagenPerfil: string;
+  /**
    * Informacion del vehiculo enviada desde vehiculos component
    */
   private data: Colaboradores;
@@ -50,6 +59,7 @@ export class ModalColaboradorComponent implements OnInit {
 
   public ngOnInit(): void {
     this.crearForm();
+    this.id = this.data.id;
 
     if (this.accion == 'editar') {
       this.formModal.get('nombre').setValue(this.data.nombre);
@@ -60,6 +70,10 @@ export class ModalColaboradorComponent implements OnInit {
       this.formModal.get('correo_electronico').setValue(this.data.correo_electronico);
       this.formModal.get('correo_electronico').disable();
     }
+  }
+
+  public imagePerfil($event){
+    this.imagenPerfil = $event;
   }
   /**
    * Funcion para cerrar el modal
@@ -118,13 +132,12 @@ export class ModalColaboradorComponent implements OnInit {
   /**
    * Funcion para editar un colaborador
    */
-  edit(){
+  public edit(){
 
     let datos = this.dataForm();
 
     this.ColaboradoresService.update(datos).subscribe(
       (data: ResponseColaboradores) => {
-        console.log(data);
         this.event.emit(data)
       },
       (error) => {
@@ -144,7 +157,7 @@ export class ModalColaboradorComponent implements OnInit {
       apellido_materno: this.formModal.controls['apellido_materno'].value,
       telefono: this.formModal.controls['telefono'].value,
       correo_electronico: this.formModal.controls['correo_electronico'].value,
-      ruta_perfil: this.formModal.controls['ruta_perfil'].value,
+      ruta_perfil: this.imagenPerfil,
       rol: this.formModal.controls['rol'].value,
       password: this.formModal.controls['password'].value,
       password_confirmation: this.formModal.controls['password_confirmation'].value,

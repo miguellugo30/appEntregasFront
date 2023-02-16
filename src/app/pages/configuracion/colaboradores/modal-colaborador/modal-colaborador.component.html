@@ -7,6 +7,7 @@
 <div class="modal-body" >
   <form [formGroup]="formModal">
     <div class="row">
+      <div class="col">
       <div class="mb-3">
         <div class="form-group">
           <label class="form-label requerido">Nombre *</label>
@@ -164,7 +165,14 @@
       <div class="mb-3">
         <div class="form-text">* Campos requerido</div>
       </div>
+    </div><!--div.col-->
+    <div class="col">
+      <div class="mb-3">
+        <app-web-cam (captureImageEvent)="imagePerfil($event)" [id]="id"></app-web-cam>
+      </div>
+    </div>
     </div><!--div.row-->
+    <!--div.row-->
   </form>
 </div>
 <div class="modal-footer">

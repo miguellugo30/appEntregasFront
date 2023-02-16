@@ -22,6 +22,7 @@ import { ErrorInterceptor } from './core/helpers/error.interceptor';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 import { FakeBackendInterceptor } from './core/helpers/fake-backend';
 import { ToastrModule } from 'ngx-toastr';
+import { WebcamModule } from 'ngx-webcam';
 
 if (environment.defaultauth === 'firebase') {
   initFirebaseBackend(environment.firebaseConfig);
@@ -58,7 +59,8 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbTooltipModule,
     ScrollToModule.forRoot(),
     NgbModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    WebcamModule
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -1,0 +1,21 @@
+
+  <h4>Capturar foto para perfil</h4>
+  <div class="col-12">
+    <webcam
+      [trigger]="invokeObservable"
+      (imageCapture)="captureImg($event)"
+      [height]="400"
+      [width]="400"
+    ></webcam>
+  </div>
+  <div class="col-12 text-center">
+    <button class="btn btn-danger" (click)="getSnapshot()">
+      Tomar Foto
+    </button>
+  </div>
+  <br>
+  <div class="col-12 text-center">
+    <!--div id="results">Your taken image manifests here...</div-->
+    <img [src]="sysImage" height="200px" />
+  </div>
+

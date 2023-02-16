@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ResponseColaboradores, Colaboradores } from '../models/colaboradores';
+import { ResponseColaboradores, Colaboradores, ResponsePhoto } from '../models/colaboradores';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,13 @@ export class ColaboradoresService {
    */
   public getAll(): Observable<ResponseColaboradores>{
     return this.http.get<ResponseColaboradores>(`${environment.apiUrl}/colaboradores`);
+  }
+  /**
+   * Funcion para obtener todos los registros de Colaboradores
+   * @returns
+   */
+  public getPhoto(id): Observable<ResponsePhoto>{
+    return this.http.get<ResponsePhoto>(`${environment.apiUrl}/colaboradores/`+id);
   }
   /**
    * Funcion para crear un nuevo vehiculo

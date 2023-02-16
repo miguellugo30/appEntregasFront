@@ -5,8 +5,6 @@ import { Colaboradores, ResponseColaboradores } from 'src/app/core/models/colabo
 import { ColaboradoresService } from 'src/app/core/services/colaboradores.service';
 import Swal from 'sweetalert2';
 import { ModalColaboradorComponent } from './modal-colaborador/modal-colaborador.component';
-
-
 @Component({
   selector: 'app-colaboradores',
   templateUrl: './colaboradores.component.html',
@@ -124,7 +122,8 @@ export class ColaboradoresComponent implements OnInit{
         data: data,
         title: title,
         accion: accion
-      }
+      },
+      class: 'modal-lg'
     };
     this.bsModalRe = this.modalService.show(ModalColaboradorComponent,initialState );
     this.bsModalRe.content.closeBtnName = 'Close';
