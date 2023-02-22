@@ -1,0 +1,75 @@
+<app-loader></app-loader>
+<div class="container-fluid">
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box d-flex align-items-center justify-content-between">
+                <h4 class="mb-0 font-size-18">Salida de Paquetes</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <ng-container>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Paquetes</a>
+                            </li>
+                            <li class="breadcrumb-item active">Salida
+                            </li>
+                        </ng-container>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header border-bottom">
+            <div class="row">
+              <div class="col-md-4 col-9"></div>
+              <div class="col-md-8 col-3">
+                <ul class="list-inline user-chat-nav text-end mb-0">
+                  <li class="list-inline-item d-none d-sm-inline-block">
+                    <button class="btn btn-primary btn-sm" (click)="asignarPaquetes()">
+                      <i class="bx bx-plus-circle"></i>
+                      Asignar Paquetes
+                    </button>
+                </li>
+              </ul>
+              </div>
+            </div>
+          </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <label for="colaborador">Selecciona un repartidor</label>
+                  <select class="form-select" name="colaborador" id="colaborador" [(ngModel)]="colaborador">
+                    <option value="">Selecciona un repartidor</option>
+                    <option *ngFor="let tipo of dataRepartidores; let i = index" [value]="dataRepartidores[i].id">
+                      {{dataRepartidores[i].nombre}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label for="colaborador">Escanea los paquetes</label>
+                  <input class="form-control" type="text" name="escanearPaquete" id="escanearPaquete" [(ngModel)]="paqueteEscaneado" (change)="capturarPaquete($event)">
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <h5>Paquetes para asignar</h5>
+                  <select class="form-select" multiple aria-label="multiple select example" size="20">
+                    <option *ngFor="let tipo of paquetesAAsignar; let i = index" [value]="paquetesAAsignar[i].id">
+                      {{paquetesAAsignar[i].guia_rastreo}} - {{paquetesAAsignar[i].nombre_cliente}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+
+            </div><!--div.car-body-->
+        </div><!--div.car-->
+      </div><!--div.col-12-->
+    </div><!--div.row-->
+    <!-- end page title -->
+</div> <!-- container-fluid -->

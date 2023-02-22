@@ -37,8 +37,8 @@ export class ModalColaboradorComponent implements OnInit {
    */
   public roles: any[] = [
     {id: '1', name: 'Administrador'},
-    {id: '2', name: 'Asistente'},
-    {id: '3', name: 'Repartidor'}
+    {id: '2', name: 'Repartidor'},
+    {id: '3', name: 'Asistente'}
   ]
   /**
    * Variable que contendra la imagen que se capture

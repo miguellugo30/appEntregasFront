@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfiguracionModule } from './configuracion/configuracion.module';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaquetesModule } from './paquetes/paquetes.module';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     NgbCollapseModule,
     PickerModule,
     ConfiguracionModule,
+    PaquetesModule,
     ModalModule.forRoot(),
   ],
 })

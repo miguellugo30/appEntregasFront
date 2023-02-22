@@ -92,7 +92,7 @@
             class="form-control ng-dirty !ng-invalid"
             formControlName="rol">
             <option value="0" selected>Selecciona un tipo</option>
-            <option *ngFor="let tipo of roles; let i = index" [value]="roles[i].name">
+            <option *ngFor="let tipo of roles; let i = index" [value]="roles[i].id">
               {{roles[i].name}}
             </option>
           </select>

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DefaultComponent },
   { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },
   { path: 'configuracion', loadChildren: () => import('./configuracion/configuracion.module').then(m => m.ConfiguracionModule) },
+  { path: 'paquetes', loadChildren: () => import('./paquetes/paquetes.module').then(m => m.PaquetesModule) },
 ];
 
 @NgModule({

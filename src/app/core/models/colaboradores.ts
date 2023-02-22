@@ -6,9 +6,9 @@ export interface Colaboradores {
   telefono: string;
   correo_electronico: string;
   ruta_perfil: string;
-  rol?: string;
+  rol?: Rol;
   password?: string;
-  password_confirmation?: string
+  password_confirmation?: string,
 }
 
 export class ResponseColaboradores {
@@ -21,4 +21,8 @@ export class ResponsePhoto {
   data: string;
   message: string;
   success: boolean;
+}
+
+export class Rol{
+  nombre: string
 }
