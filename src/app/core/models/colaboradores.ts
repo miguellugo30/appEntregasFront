@@ -9,6 +9,7 @@ export interface Colaboradores {
   rol?: Rol;
   password?: string;
   password_confirmation?: string,
+  vehiculo?: number
 }
 
 export class ResponseColaboradores {
@@ -24,5 +25,6 @@ export class ResponsePhoto {
 }
 
 export class Rol{
-  nombre: string
+  id: number;
+  nombre: string;
 }

@@ -18,8 +18,6 @@ export class VehiculosComponent implements OnInit {
    */
   public dataVehiculos: Vehiculos[] = [];
 
-  public listaDatos: any[] = [];
-
   constructor(
     public toastr: ToastrService,
     private VehiculosService: VehiculosService,

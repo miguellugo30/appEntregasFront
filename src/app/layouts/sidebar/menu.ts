@@ -12,13 +12,19 @@ export const MENU: MenuItem[] = [
         icon: 'bx-package',
         subItems: [
             {
-                id: 3,
+                id: 1,
+                label: 'Listado Paquetes',
+                link: '/paquetes/listado-paquetes',
+                parentId: 2
+            },
+            {
+                id: 2,
                 label: 'Entrada',
                 link: '/',
                 parentId: 2
             },
             {
-                id: 4,
+                id: 3,
                 label: 'Salida',
                 link: '/paquetes/salida-paquetes',
                 parentId: 2

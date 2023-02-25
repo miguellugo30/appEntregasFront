@@ -90,10 +90,32 @@
           <div>
             <select
             class="form-control ng-dirty !ng-invalid"
-            formControlName="rol">
-            <option value="0" selected>Selecciona un tipo</option>
+            formControlName="rol"
+            (change)="validarRol($event)"
+            >
+            <option value="" selected>Selecciona un opción</option>
             <option *ngFor="let tipo of roles; let i = index" [value]="roles[i].id">
               {{roles[i].name}}
+            </option>
+          </select>
+          </div>
+          <!--div class="text-danger">
+            <div *ngIf="formModal.controls['marca'].errors?.required">
+              Campo requerido
+            </div>
+          </div-->
+        </div><!--div.form-group-->
+      </div><!--div.col-->
+      <div class="mb-3" *ngIf="mostrarSelect">
+        <div class="form-group">
+          <label class="form-label requerido">Vehiculo </label>
+          <div>
+            <select
+            class="form-control ng-dirty !ng-invalid"
+            formControlName="vehiculo">
+            <option value="" selected>Selecciona un vehiculo</option>
+            <option *ngFor="let tipo of dataVehiculos; let i = index" [value]="dataVehiculos[i].id">
+              {{dataVehiculos[i].marca}} - {{dataVehiculos[i].modelo}} - {{dataVehiculos[i].placas}}
             </option>
           </select>
           </div>

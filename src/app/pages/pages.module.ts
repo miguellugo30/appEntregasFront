@@ -16,6 +16,9 @@ import { ConfiguracionModule } from './configuracion/configuracion.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaquetesModule } from './paquetes/paquetes.module';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -34,6 +37,7 @@ import { PaquetesModule } from './paquetes/paquetes.module';
     ConfiguracionModule,
     PaquetesModule,
     ModalModule.forRoot(),
+    LeafletModule
   ],
 })
 export class PagesModule { }

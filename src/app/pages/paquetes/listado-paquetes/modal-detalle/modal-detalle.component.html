@@ -1,0 +1,96 @@
+<div class="modal-header">
+  <h5 class="modal-title mt-0">{{ title }}</h5>
+  <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" (click)="cerrarModal()">
+    <span aria-hidden="true"></span>
+  </button>
+</div>
+<div class="modal-body" >
+  <div class="shadow-sm p-3 bg-body rounded">Datos del Cliente</div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <dl class="row">
+        <dt class="col-sm-5">Guia de Rastreo</dt>
+        <dd class="col-sm-7">{{ paquete.guia_rastreo }}</dd>
+      </dl>
+    </div>
+    <div class="col">
+      <dl class="row">
+        <dt class="col-sm-5">Nombre del Cliente</dt>
+        <dd class="col-sm-7">{{ paquete.nombre_cliente }}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <dl class="row">
+        <dt class="col-sm-5">Telefono:</dt>
+        <dd class="col-sm-7">{{ paquete.telefono }}</dd>
+      </dl>
+    </div>
+    <div class="col">
+      <dl class="row">
+        <dt class="col-sm-5">Correo Electronico:</dt>
+        <dd class="col-sm-7">{{ paquete.correo_electronico }}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <dl class="row">
+        <dt class="col-sm-5">Dirección:</dt>
+        <dd class="col-sm-7">{{ paquete.direccion }} No. Ext. {{ paquete.no_exterior }} No. Int. {{ paquete.no_interior }} </dd>
+        <dt class="col-sm-5">Colonia</dt>
+        <dd class="col-sm-7">{{ paquete.colonia }}</dd>
+        <dt class="col-sm-5">Alcaldia/Municipio: </dt>
+        <dd class="col-sm-7">{{ paquete.alcaldia_municipio }}</dd>
+        <dt class="col-sm-5">Codigo Postal: </dt>
+        <dd class="col-sm-7">{{ paquete.codigo_postal }}</dd>
+        <dt class="col-sm-5">Estado: </dt>
+        <dd class="col-sm-7">{{ paquete.estado }}</dd>
+        <dt class="col-sm-5">Referencias:</dt>
+        <dd class="col-sm-7">{{ paquete.referencias }}</dd>
+      </dl>
+    </div>
+    <div class="col">
+      <div style="height: 300px;" leaflet [leafletOptions]="options"></div>
+    </div>
+  </div>
+  <br>
+  <div class="shadow-sm p-3 bg-body rounded">Repartidor</div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <dl class="row">
+        <dt class="col-sm-5">Nombre:</dt>
+        <dd class="col-sm-7">{{ colaborador.nombre }} {{ colaborador.apellido_paterno }} {{ colaborador.apellido_materno }}</dd>
+      </dl>
+    </div>
+    <div class="col">
+      <dl class="row">
+        <dt class="col-sm-5">Vehiculo:</dt>
+        <dd class="col-sm-7">{{ colaborador.vehiculo.marca }} {{ colaborador.vehiculo.modelo }} {{ colaborador.vehiculo.placas }}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="shadow-sm p-3 bg-body rounded">Historial de Estatus</div>
+
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Estatus</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of estatus">
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.created_at | date: 'dd-MM-yyyy hh:mm:ss a' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cerrarModal()">Cerrar</button>
+</div>

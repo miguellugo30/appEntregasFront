@@ -2,8 +2,12 @@ import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Colaboradores, ResponseColaboradores, ResponsePhoto } from 'src/app/core/models/colaboradores';
+import { ResponseVehiculos, Vehiculos } from 'src/app/core/models/vehiculos';
 import { ColaboradoresService } from 'src/app/core/services/colaboradores.service';
+import { VehiculosService } from 'src/app/core/services/vehiculos.service';
 import { WebCamComponent } from '../web-cam/web-cam.component';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-modal-colaborador',
   templateUrl: './modal-colaborador.component.html',
@@ -12,6 +16,10 @@ import { WebCamComponent } from '../web-cam/web-cam.component';
 export class ModalColaboradorComponent implements OnInit {
 
   @ViewChild(WebCamComponent) child;
+  /**
+   * Variable para el id del colaborador
+   */
+  public mostrarSelect :boolean= false;
   /**
    * Variable para el id del colaborador
    */
@@ -45,6 +53,10 @@ export class ModalColaboradorComponent implements OnInit {
    */
   public imagenPerfil: string;
   /**
+   * Variable que contendra la informacion de vehiculos
+  */
+  public dataVehiculos: Vehiculos[] = [];
+  /**
    * Informacion del vehiculo enviada desde vehiculos component
    */
   private data: Colaboradores;
@@ -53,12 +65,13 @@ export class ModalColaboradorComponent implements OnInit {
     public bsModalRef: BsModalRef,
     public formBuilder: FormBuilder,
     private ColaboradoresService: ColaboradoresService,
-  ){
-
-  }
+    private VehiculosService: VehiculosService,
+    public toastr: ToastrService,
+  ){}
 
   public ngOnInit(): void {
     this.crearForm();
+    this.getVehiculos();
     this.id = this.data.id;
 
     if (this.accion == 'editar') {
@@ -66,9 +79,13 @@ export class ModalColaboradorComponent implements OnInit {
       this.formModal.get('apellido_paterno').setValue(this.data.apellido_paterno);
       this.formModal.get('apellido_materno').setValue(this.data.apellido_materno);
       this.formModal.get('telefono').setValue(this.data.telefono);
-      this.formModal.get('rol').setValue(this.data.rol);
+      this.formModal.get('rol').setValue(this.data.rol.id);
       this.formModal.get('correo_electronico').setValue(this.data.correo_electronico);
       this.formModal.get('correo_electronico').disable();
+
+      if (this.data.rol.id == 2) {
+        this.mostrarSelect = true;
+      }
     }
   }
 
@@ -95,7 +112,8 @@ export class ModalColaboradorComponent implements OnInit {
         telefono: new FormControl(null, [Validators.required]),
         correo_electronico: new FormControl(null, [Validators.required]),
         ruta_perfil: new FormControl(null),
-        rol: new FormControl(null, [Validators.required]),
+        rol: new FormControl('', [Validators.required]),
+        vehiculo: new FormControl(1),
         password: new FormControl(null, [Validators.required ]),
         password_confirmation: new FormControl(null, [Validators.required]),
       });
@@ -107,7 +125,8 @@ export class ModalColaboradorComponent implements OnInit {
         telefono: new FormControl(null, [Validators.required]),
         correo_electronico: new FormControl(null, [Validators.required]),
         ruta_perfil: new FormControl(null),
-        rol: new FormControl(null, [Validators.required]),
+        rol: new FormControl('', [Validators.required]),
+        vehiculo: new FormControl(1),
         password: new FormControl(null),
         password_confirmation: new FormControl(null),
       });
@@ -144,9 +163,10 @@ export class ModalColaboradorComponent implements OnInit {
         console.log(error);
       }
     )
-
   }
-
+  /**
+   * Funcion para crear el objeto que se enviara al backend
+   */
   private dataForm(){
 
     let datos: Colaboradores;
@@ -159,6 +179,7 @@ export class ModalColaboradorComponent implements OnInit {
       correo_electronico: this.formModal.controls['correo_electronico'].value,
       ruta_perfil: this.imagenPerfil,
       rol: this.formModal.controls['rol'].value,
+      vehiculo: this.formModal.controls['vehiculo'].value,
       password: this.formModal.controls['password'].value,
       password_confirmation: this.formModal.controls['password_confirmation'].value,
     }
@@ -169,6 +190,45 @@ export class ModalColaboradorComponent implements OnInit {
 
     return datos;
 
+  }
+
+  public validarRol($event){
+
+    console.log($event.target.value);
+    if ($event.target.value == 2) {
+      this.mostrarSelect = true;
+    } else {
+      this.mostrarSelect = false;
+    }
+
+  }
+  /**
+   * Funcion para obtener todos los vehiculos
+   */
+  public getVehiculos(){
+    this.VehiculosService.getAll().subscribe(
+      (data: ResponseVehiculos) => {
+        if (data.success) {
+          this.dataVehiculos = data.data;
+        } else {
+          this.alertError(data.message, data.success);
+        }
+      },
+      (error) => {
+        this.alertError(error, false);
+      }
+    );
+  }
+  /**
+   * Funcion para mostrar una alerta de error
+   * @param message mensaje que se mostrara
+   */
+  public alertError(message: string, type:boolean){
+    if (type) {
+      this.toastr.success(message, 'Confirmación');
+    } else {
+      this.toastr.error(message, 'Ha ocurrido un error');
+    }
   }
 
 }

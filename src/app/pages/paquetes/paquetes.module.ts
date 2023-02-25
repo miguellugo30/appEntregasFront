@@ -8,10 +8,15 @@ import { SimplebarAngularModule } from 'simplebar-angular';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { PaquetesRoutingModule } from './paquetes-routing.module';
 import { SalidaPaquetesComponent } from './salida-paquetes/salida-paquetes.component';
+import { ListadoPaquetesComponent } from './listado-paquetes/listado-paquetes.component';
+import { ModalDetalleComponent } from './listado-paquetes/modal-detalle/modal-detalle.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
-    SalidaPaquetesComponent
+    SalidaPaquetesComponent,
+    ListadoPaquetesComponent,
+    ModalDetalleComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +29,7 @@ import { SalidaPaquetesComponent } from './salida-paquetes/salida-paquetes.compo
     NgApexchartsModule,
     SimplebarAngularModule,
     PaquetesRoutingModule,
+    LeafletModule
   ]
 })
 export class PaquetesModule { }
