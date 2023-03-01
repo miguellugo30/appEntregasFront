@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Paquetes } from 'src/app/core/models/paquetes';
+import { Paquetes, ResponsePaquetes } from 'src/app/core/models/paquetes';
 import { latLng, tileLayer, circle, polygon, marker, icon, Layer } from 'leaflet';
 import { ListadoPaquetesService } from 'src/app/core/services/listado-paquetes.service';
 import { ToastrService } from 'ngx-toastr';
@@ -24,7 +24,12 @@ export class ModalDetalleComponent implements OnInit {
    * Detalle paquete
    */
   public colaborador : any;
+
   public estatus : any;
+  /**
+   * Bandera para saber cuando se carga la información
+   */
+  public loadData: boolean = false;
 
   options = {
     layers: [
@@ -66,10 +71,10 @@ export class ModalDetalleComponent implements OnInit {
   public get(){
     this.listaPaquetesService.get(this.paquete.id).subscribe(
       (data: any) => {
-        console.log(data);
         if (data.success) {
           this.colaborador = data.data.colaborador[0];
           this.estatus = data.data.estatus;
+          this.loadData = true;
         } else {
           this.alertError(data.message, data.success);
         }

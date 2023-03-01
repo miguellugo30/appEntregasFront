@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgbNavModule, NgbDropdownModule, NgbModalModule, NgbTooltipModule , NgbCollapseModule} from '@ng-bootstrap/ng-bootstrap';
@@ -39,5 +39,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     ModalModule.forRoot(),
     LeafletModule
   ],
+  providers: [
+    DecimalPipe
+  ]
 })
 export class PagesModule { }

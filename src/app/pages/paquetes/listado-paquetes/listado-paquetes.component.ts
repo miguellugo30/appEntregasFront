@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ListadoPaquetesService } from 'src/app/core/services/listado-paquetes.service';
 import { Paquetes, ResponsePaquetes } from '../../../core/models/paquetes';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './listado-paquetes.component.html',
   styleUrls: ['./listado-paquetes.component.scss']
 })
-export class ListadoPaquetesComponent implements OnInit{
+export class ListadoPaquetesComponent implements OnInit, OnDestroy{
 
   public listadoPaquetes: Paquetes[];
 
@@ -22,7 +22,12 @@ export class ListadoPaquetesComponent implements OnInit{
   ){}
 
   public ngOnInit(): void {
+    this.listadoPaquetes = [];
     this.getAll();
+  }
+
+  public ngOnDestroy(): void {
+    this.listaPaquetesService
   }
 
   /**
@@ -58,7 +63,6 @@ export class ListadoPaquetesComponent implements OnInit{
     this.bsModalRe.content.closeBtnName = 'Close';
 
   }
-
   /**
    * Funcion para mostrar una alerta de error
    * @param message mensaje que se mostrara

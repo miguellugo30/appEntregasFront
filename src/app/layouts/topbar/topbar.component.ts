@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { LanguageService } from '../../core/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
+import { GetdatauserService } from 'src/app/core/services/getdatauser.service';
 
 @Component({
   selector: 'app-topbar',
@@ -25,11 +26,14 @@ export class TopbarComponent implements OnInit {
   countryName;
   valueset;
 
+  public userName: string;
+
   constructor(@Inject(DOCUMENT) private document: any, private router: Router, private authService: AuthenticationService,
               private authFackservice: AuthfakeauthenticationService,
               public languageService: LanguageService,
               public translate: TranslateService,
-              public _cookiesService: CookieService) {
+              public _cookiesService: CookieService,
+              private getDataUser: GetdatauserService) {
   }
 
   listLang = [
@@ -57,6 +61,9 @@ export class TopbarComponent implements OnInit {
     } else {
       this.flagvalue = val.map(element => element.flag);
     }
+
+    this.userName = this.getDataUser.getNameUser();
+
   }
 
   setLanguage(text: string, lang: string, flag: string) {

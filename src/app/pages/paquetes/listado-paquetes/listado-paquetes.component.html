@@ -21,18 +21,7 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <div class="card-header border-bottom">
-            <div class="row">
-              <div class="col-md-4 col-9"></div>
-              <div class="col-md-8 col-3">
-                <ul class="list-inline user-chat-nav text-end mb-0">
-                  <li class="list-inline-item d-none d-sm-inline-block">
 
-                </li>
-              </ul>
-              </div>
-            </div>
-          </div>
             <div class="card-body">
 
               <table class="table mb-0">
@@ -53,7 +42,7 @@
                     <td>{{ item.nombre_cliente }}</td>
                     <td>{{ item.telefono }}</td>
                     <td>{{ item.correo_electronico }}</td>
-                    <td></td>
+                    <td>{{ item.estatus.nombre }}</td>
                     <td class="text-center">
                       <button class="btn btn-primary btn-sm" (click)="viewDetail(item)">
                         <i class="bx bx-show"></i>
