@@ -10,5 +10,6 @@ export const environment = {
     messagingSenderId: '',
     appId: '',
     measurementId: ''
-  }
+  },
+  apiUrl: "http://rda-back.dyndns.org/api",
 };

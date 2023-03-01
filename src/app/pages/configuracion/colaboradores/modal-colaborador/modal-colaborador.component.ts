@@ -51,7 +51,7 @@ export class ModalColaboradorComponent implements OnInit {
   /**
    * Variable que contendra la imagen que se capture
    */
-  public imagenPerfil: string;
+  public imagenPerfil: string = '';
   /**
    * Variable que contendra la informacion de vehiculos
   */
